@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Game</title>
+</head>
+<body>
+    <h1>Hi, welcome to todo_game by ghost</h1>
+
+    <input type="text">
+    <button onclick="">Add todo</button>
+
+    {% for todo in todo_list %}
+
+    <p>{{ todo.id }} | {{ todo.title }}</p>
+
+    {% if todo.complete == False %}
+    <span>Not complete</span>
+    {% else %}
+    <span>Completed</span>
+
+    <script>
+        var request = '127://'
+    </script>
+</body>
+</html>
