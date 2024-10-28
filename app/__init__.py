@@ -12,8 +12,10 @@ def create_app():
 
     with app.app_context():
         from . import models
-        from . import views
+        from .views import register_routes
 
         db.create_all()
+        register_routes(app)
+
 
     return app
