@@ -6,6 +6,25 @@
     <title>Todo Game</title>
 </head>
 <body>
-    <h1>Hi</h1>
+    <h1>Welcome, that's todo_game by ghost</h1>
+
+    <div>
+        <input type="text", id="todo_title">
+        <button onclick="add_todo()">Add todo</button>
+    </div>
+
+    {% for todo in todo_list %}
+    <p>{{ todo.id }} | {{ todo.title }}</p>
+    {% endfor %}
+
+    <script>
+        async function add_todo()
+        {
+            var todo_title = document.getElementById("todo_title").value
+            var request = `http://127.0.0.1:5000/add_todo?todo_title=${todo_title}`
+
+            await fetch(request)
+        }
+    </script>
 </body>
 </html>
