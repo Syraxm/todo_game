@@ -37,7 +37,9 @@ def register():
 @todo.route('/add_todo')
 def add_todo():
     todo_title = request.args.get('todo_title')
-    new_todo = Todo(title=todo_title, complete=False)
+    todo_level = request.args.get('level')
+
+    new_todo = Todo(title=todo_title, complete=False, level=todo_level)
 
     db.session.add(new_todo)
     db.session.commit()
@@ -57,10 +59,12 @@ def delete_todo(todo_id: int):
 
 @todo.route('/complete_todo/<todo_id>')
 def complete_todo(todo_id: int):
+    todo_level = request.args.get('level')
+
     todo = Todo.query.filter_by(id = todo_id).first()
     user = User.query.first()
 
-    user.points += 10
+    user.points += 10 * int(todo_level)
     if user.points % 50 == 0:
         user.level += 1
 

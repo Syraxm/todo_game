@@ -9,20 +9,26 @@
     <h1>Welcome, that's todo_game by ghost</h1>
 
     <div>
-        <input type="text", id="todo_title">
-        <button onclick="add_todo()">Add todo</button>
-    </div>
-
-    <div>
         <h2>Your stats</h2>
         <p>Points: {{ points }}</p>
         <p>Level: {{ level }}</p>
     </div>
 
+    <div>
+        <input type="text", id="todo_title">
+        <select name="todo_level" id="todo_level">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <button onclick="add_todo()">Add todo</button>
+    </div>
+
     {% for todo in todo_list %}
     <div>
         <button onclick="delete_todo(this)", id="{{ todo.id }}">delete</button>
-        <button onclick="complete_todo(this)", id="{{ todo.id }}">complete</button>
+        <button onclick="complete_todo(this)", id="{{ todo.id }}", name="{{ todo.level }}">complete</button>
         <a> | {{ todo.title }}</a>
     </div><br>
     {% endfor %}
@@ -31,7 +37,9 @@
         async function add_todo()
         {
             var todo_title = document.getElementById("todo_title").value
-            var request = `http://127.0.0.1:5000/add_todo?todo_title=${todo_title}`
+            var todo_level = document.getElementById("todo_level").value
+
+            var request = `http://127.0.0.1:5000/add_todo?todo_title=${todo_title}&level=${todo_level}`
 
             await fetch(request)
             location.reload()
@@ -49,7 +57,8 @@
         async function complete_todo(button)
         {
             var todo_id = button.id
-            var request = `http://127.0.0.1:5000/complete_todo/${todo_id}`
+            var todo_level = button.name
+            var request = `http://127.0.0.1:5000/complete_todo/${todo_id}?level=${todo_level}`
 
             await fetch(request)
             location.reload()
