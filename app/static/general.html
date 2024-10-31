@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo_game general page</title>
+</head>
+<body>
+    <h1>Welcome!!</h1>
+    <button onclick="log_in()">Log in</button>
+    <button onclick="sign_up()">Sign up</button>
+
+    <script>
+        async function log_in()
+        {
+            var request = "http://127.0.0.1:5000/home_page"
+            open(request)
+        }
+
+        async function sign_up()
+        {
+            var request = "http://127.0.0.1:5000/registration_page"
+            open(request)
+        }
+    </script>
+</body>
+</html>

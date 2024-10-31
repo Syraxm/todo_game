@@ -11,10 +11,20 @@
     <div>
         <input type="text", id="todo_title">
         <button onclick="add_todo()">Add todo</button>
-    </div><br>
+    </div>
+
+    <div>
+        <h2>Your stats</h2>
+        <p>Points: {{ points }}</p>
+        <p>Level: {{ level }}</p>
+    </div>
 
     {% for todo in todo_list %}
-    <button onclick="delete_todo(this)", id="{{ todo.id }}">delete</button> <a> | {{ todo.title }}</a><br>
+    <div>
+        <button onclick="delete_todo(this)", id="{{ todo.id }}">delete</button>
+        <button onclick="complete_todo(this)", id="{{ todo.id }}">complete</button>
+        <a> | {{ todo.title }}</a>
+    </div><br>
     {% endfor %}
 
     <script>
@@ -24,6 +34,7 @@
             var request = `http://127.0.0.1:5000/add_todo?todo_title=${todo_title}`
 
             await fetch(request)
+            location.reload()
         }
 
         async function delete_todo(button)
@@ -32,6 +43,16 @@
             var request = `http://127.0.0.1:5000/delete_todo/${todo_id}`
 
             await fetch(request)
+            location.reload()
+        }
+
+        async function complete_todo(button)
+        {
+            var todo_id = button.id
+            var request = `http://127.0.0.1:5000/complete_todo/${todo_id}`
+
+            await fetch(request)
+            location.reload()
         }
     </script>
 </body>
