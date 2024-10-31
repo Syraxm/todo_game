@@ -11,10 +11,10 @@
     <div>
         <input type="text", id="todo_title">
         <button onclick="add_todo()">Add todo</button>
-    </div>
+    </div><br>
 
     {% for todo in todo_list %}
-    <p>{{ todo.id }} | {{ todo.title }}</p>
+    <button onclick="delete_todo(this)", id="{{ todo.id }}">delete</button> <a> | {{ todo.title }}</a><br>
     {% endfor %}
 
     <script>
@@ -22,6 +22,14 @@
         {
             var todo_title = document.getElementById("todo_title").value
             var request = `http://127.0.0.1:5000/add_todo?todo_title=${todo_title}`
+
+            await fetch(request)
+        }
+
+        async function delete_todo(button)
+        {
+            var todo_id = button.id
+            var request = `http://127.0.0.1:5000/delete_todo/${todo_id}`
 
             await fetch(request)
         }
