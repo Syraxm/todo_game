@@ -59,12 +59,10 @@ def delete_todo(todo_id: int):
 
 @todo.route('/complete_todo/<todo_id>')
 def complete_todo(todo_id: int):
-    todo_level = request.args.get('level')
-
     todo = Todo.query.filter_by(id = todo_id).first()
     user = User.query.first()
 
-    user.points += 10 * int(todo_level)
+    user.points += 10 * todo.level
     if user.points % 50 == 0:
         user.level += 1
 
