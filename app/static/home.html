@@ -9,7 +9,7 @@
     <h1>Welcome, that's todo_game by ghost</h1>
 
     <div>
-        <h2>Your stats</h2>
+        <h2>Your stats, {{ user_name }}</h2>
         <p>Points: {{ points }}</p>
         <p>Level: {{ level }}</p>
     </div>
@@ -23,13 +23,13 @@
             <option value="4">4</option>
         </select>
         <button onclick="add_todo()">Add todo</button>
-    </div>
+    </div><br>
 
     {% for todo in todo_list %}
     <div>
         <button onclick="delete_todo(this)", id="{{ todo.id }}">delete</button>
         <button onclick="complete_todo(this)", id="{{ todo.id }}", name="{{ todo.level }}">complete</button>
-        <a> | {{ todo.title }}</a>
+        <a> | {{ todo.title }} | {{ todo.level }}</a>
     </div><br>
     {% endfor %}
 

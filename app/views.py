@@ -15,7 +15,7 @@ def home():
     todo_list = Todo.query.all()
     user = User.query.first()
 
-    return render_template('home.html', todo_list=todo_list, points=user.points, level=user.level)
+    return render_template('home.html', todo_list=todo_list, points=user.points, level=user.level, user_name=user.name)
 
 
 @todo.route('/registration_page')
@@ -26,7 +26,7 @@ def show_registration_page():
 @todo.route('/register')
 def register():
     user_name = request.args.get('user_name')
-    new_user = User(user_name=user_name)
+    new_user = User(name=user_name)
 
     db.session.add(new_user)
     db.session.commit()
