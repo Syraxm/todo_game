@@ -63,7 +63,7 @@ def complete_todo(todo_id: int):
     user = User.query.first()
 
     user.points += 10 * todo.level
-    if user.points % 50 == 0:
+    if user.points % 400 == 0:
         user.level += 1
 
     db.session.delete(todo)
