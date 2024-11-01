@@ -15,9 +15,10 @@
         {
             var user_input = document.getElementById('user_name_input').value
             var request = `http://127.0.0.1:5000/register?user_name=${user_input}`
+            var home_page_address = "http://127.0.0.1:5000/home_page"
 
             await fetch(request)
-            open("http://127.0.0.1:5000/home_page")
+            window.open(home_page_address, "_self")
         }
     </script>
 </body>
